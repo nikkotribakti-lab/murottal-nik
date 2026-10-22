@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Juz 1 - 30 Al-Qur'an - EQuran.id</title>
-    <!-- Tailwind CSS -->
+    <title>Al-Qur'an Digital Juz 1-30 Presisi Ayat & Audio Qari</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -41,7 +41,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -56,9 +55,8 @@
         .islamic-pattern {
             background-color: #064e3b;
             background-image: radial-gradient(#10b981 0.75px, transparent 0.75px), radial-gradient(#10b981 0.75px, #064e3b 0.75px);
-            background-size: 30px 30px;
-            background-position: 0 0, 15px 15px;
-            opacity: 0.95;
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
         }
         .light .islamic-pattern {
             background-color: #ecfdf5;
@@ -66,151 +64,179 @@
         }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100 light:bg-slate-50 light:text-slate-800" id="app-body">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100 light:bg-slate-50 light:text-slate-800">
 
-    <!-- Header / Navbar -->
+    <!-- Header Navbar -->
     <header class="sticky top-0 z-30 bg-slate-900/90 dark:bg-slate-950/90 light:bg-white/90 backdrop-blur-md border-b border-emerald-800/40 shadow-lg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo & Title -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-2">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20 ring-2 ring-emerald-400/30">
-                    <i class="fa-solid font-bold text-2xl text-white fa-book-quran"></i>
+                <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20 ring-2 ring-emerald-400/30 shrink-0">
+                    <i class="fa-solid fa-book-quran text-xl sm:text-2xl text-white"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-400 via-teal-300 to-gold-400 bg-clip-text text-transparent">
-                        Qur'an Audio Player
+                    <h1 class="text-lg sm:text-2xl font-bold bg-gradient-to-r from-emerald-400 via-teal-300 to-gold-400 bg-clip-text text-transparent leading-tight">
+                        Al-Qur'an Juz 1 - 30
                     </h1>
-                    <p class="text-xs text-slate-400 dark:text-slate-400 light:text-slate-500">Mendengarkan Per-Juz (Juz 1 - 30)</p>
+                    <p class="text-[10px] sm:text-xs text-slate-400">Audio Presisi Ayat & Multi-Qari (EQuran API v2)</p>
                 </div>
             </div>
 
-            <!-- Header Controls (Qari & Theme Toggle) -->
-            <div class="flex items-center gap-3">
-                <!-- Qari Selector -->
-                <div class="relative hidden sm:block">
-                    <select id="qariSelect" onchange="changeQari(this.value)" class="bg-slate-800 dark:bg-slate-900 light:bg-slate-100 border border-emerald-700/50 text-emerald-300 dark:text-emerald-300 light:text-emerald-800 text-xs sm:text-sm rounded-xl px-3 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all cursor-pointer">
-                        <option value="01">Mishary Rashid Al-Afasy</option>
-                        <option value="02">Abdullah Al-Juhany</option>
-                        <option value="03">Abdurrahman As-Sudais</option>
-                        <option value="04">Ibrahim Al-Dossari</option>
-                        <option value="05">Masyari Al-Qahtani</option>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Header Qari Selection -->
+                <div class="relative hidden md:block">
+                    <select onchange="changeQari(this.value)" class="qari-selector bg-slate-800 dark:bg-slate-900 light:bg-slate-100 border border-emerald-700/50 text-emerald-300 dark:text-emerald-300 light:text-emerald-800 text-xs rounded-xl px-3 py-2 pr-7 outline-none focus:ring-2 focus:ring-emerald-500 transition-all cursor-pointer">
+                        <option value="01">01. Abdullah Al-Juhany</option>
+                        <option value="02">02. Abdul Muhsin Al-Qasim</option>
+                        <option value="03">03. Abdurrahman As-Sudais</option>
+                        <option value="04">04. Ibrahim Al-Dossari</option>
+                        <option value="05" selected>05. Misyari Rasyid Al-Afasy</option>
+                        <option value="06">06. Yasser Al-Dosari</option>
                     </select>
                 </div>
 
-                <!-- Dark/Light Theme Toggle Button -->
-                <button onclick="toggleTheme()" class="w-10 h-10 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-200 border border-slate-700 dark:border-slate-700 light:border-slate-300 flex items-center justify-center text-gold-400 hover:text-gold-500 transition-all hover:scale-105 active:scale-95" title="Ganti Tema">
-                    <i id="themeIcon" class="fa-solid fa-moon text-lg"></i>
+                <!-- Theme Switcher -->
+                <button onclick="toggleTheme()" class="w-10 h-10 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-200 border border-slate-700 dark:border-slate-700 light:border-slate-300 flex items-center justify-center text-gold-400 hover:text-gold-500 transition-all" title="Ubah Tema">
+                    <i id="themeIcon" class="fa-solid fa-moon text-base"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Hero Banner & Filter Section -->
-    <section class="relative py-10 px-4 sm:px-6 lg:px-8 islamic-pattern border-b border-emerald-800/30 overflow-hidden">
+    <!-- Hero Section & Search -->
+    <section class="islamic-pattern py-8 px-4 sm:px-6 lg:px-8 border-b border-emerald-800/30">
         <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-2">Dengarkan Al-Qur'an Per Juz</h2>
-            <p class="text-emerald-100/80 text-sm sm:text-base mb-6 max-w-xl mx-auto">
-                Pilih Juz yang ingin didengarkan. Sistem akan memutar seluruh Surah dalam Juz tersebut secara otomatis (Seamless Playlist).
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-2">Pilih Juz Al-Qur'an (1 - 30)</h2>
+            <p class="text-emerald-100/80 text-xs sm:text-sm mb-5 max-w-2xl mx-auto leading-relaxed">
+                Tekan tombol **Putar Audio Juz** untuk mendengarkan Murottal per-ayat secara presisi, atau **Baca Juz** untuk menyimak Teks Arab, Transliterasi, dan Terjemahan.
             </p>
 
-            <!-- Search Bar & Mobile Qari Selector -->
-            <div class="flex flex-col sm:flex-row items-center gap-3 max-w-2xl mx-auto">
-                <div class="relative w-full">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                    <input type="text" id="searchInput" oninput="filterJuz()" placeholder="Cari Juz (misal: Juz 1, Al-Fatihah, Ya-Sin)..." 
-                        class="w-full pl-11 pr-4 py-3 bg-slate-900/90 dark:bg-slate-900/90 light:bg-white text-slate-100 dark:text-slate-100 light:text-slate-800 rounded-2xl border border-emerald-500/30 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 outline-none shadow-xl backdrop-blur-md transition-all text-sm">
-                </div>
-                <!-- Mobile Only Qari Selector -->
-                <div class="w-full sm:hidden">
-                    <select id="qariSelectMobile" onchange="changeQari(this.value)" class="w-full bg-slate-900/90 text-emerald-300 text-xs rounded-2xl p-3 border border-emerald-500/30 outline-none">
-                        <option value="01">Mishary Rashid Al-Afasy</option>
-                        <option value="02">Abdullah Al-Juhany</option>
-                        <option value="03">Abdurrahman As-Sudais</option>
-                        <option value="04">Ibrahim Al-Dossari</option>
-                        <option value="05">Masyari Al-Qahtani</option>
-                    </select>
-                </div>
+            <!-- Search Input -->
+            <div class="relative max-w-xl mx-auto">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" oninput="filterJuzCards()" placeholder="Cari Juz atau Surah (contoh: Juz 1, Al-Baqarah, Yasin)..." 
+                    class="w-full pl-11 pr-4 py-2.5 bg-slate-900/90 dark:bg-slate-900/90 light:bg-white text-slate-100 dark:text-slate-100 light:text-slate-800 rounded-xl border border-emerald-500/30 focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 outline-none shadow-xl text-xs sm:text-sm">
             </div>
         </div>
     </section>
 
-    <!-- Main Content: Juz Grid Layout -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-28">
+    <!-- Main Content Grid -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-32">
+        
         <!-- Loading State -->
         <div id="loadingState" class="flex flex-col items-center justify-center py-20 gap-4">
-            <div class="w-14 h-14 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
-            <p class="text-slate-400 text-sm animate-pulse">Mengambil data Surah & Juz dari EQuran API...</p>
+            <div class="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-slate-400 text-xs sm:text-sm animate-pulse">Menghubungkan ke API EQuran.id v2...</p>
         </div>
 
-        <!-- Juz Grid List -->
-        <div id="juzContainer" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            <!-- Items injected by JavaScript -->
+        <!-- Juz Grid Container -->
+        <div id="juzGrid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Rendered dynamically via JavaScript -->
         </div>
 
-        <!-- No Results Found -->
+        <!-- Empty Search State -->
         <div id="noResults" class="hidden text-center py-16">
             <i class="fa-solid fa-circle-exclamation text-4xl text-slate-500 mb-3"></i>
-            <p class="text-slate-400 font-medium">Juz atau Surah tidak ditemukan.</p>
+            <p class="text-slate-400 font-medium text-sm">Juz atau Surah tidak ditemukan.</p>
         </div>
     </main>
 
-    <!-- Floating Audio Player Bar (Fixed Bottom) -->
-    <div id="audioPlayerBar" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 dark:bg-slate-950/95 light:bg-white/95 backdrop-blur-xl border-t border-emerald-800/50 shadow-2xl transform translate-y-full transition-transform duration-300 ease-in-out">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+    <!-- Modal Reader Teks Ayat -->
+    <div id="readerModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden flex flex-col justify-end sm:justify-center items-center p-0 sm:p-4">
+        <div class="bg-slate-900 dark:bg-slate-900 light:bg-white border border-emerald-800/50 rounded-t-3xl sm:rounded-3xl w-full max-w-4xl h-[92vh] sm:h-[85vh] flex flex-col shadow-2xl overflow-hidden">
             
-            <!-- Seekbar & Progress -->
-            <div class="flex items-center gap-3 mb-2">
-                <span id="currentTime" class="text-xs text-slate-400 font-mono min-w-[35px] text-right">00:00</span>
-                <div class="relative flex-1 group cursor-pointer">
-                    <input type="range" id="progressBar" value="0" min="0" max="100" oninput="seekAudio(this.value)"
-                        class="w-full h-1.5 bg-slate-700 dark:bg-slate-800 light:bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500 focus:outline-none">
+            <!-- Modal Header -->
+            <div class="p-4 sm:p-5 border-b border-slate-800 dark:border-slate-800 light:border-slate-200 flex items-center justify-between bg-slate-950/50 dark:bg-slate-950/50 light:bg-slate-100 shrink-0">
+                <div>
+                    <h3 id="modalJuzTitle" class="text-lg font-bold text-emerald-400">Detail Juz</h3>
+                    <p id="modalJuzRange" class="text-xs text-slate-400">Rentang Ayat</p>
                 </div>
-                <span id="durationTime" class="text-xs text-slate-400 font-mono min-w-[35px]">00:00</span>
+                <div class="flex items-center gap-2">
+                    <button id="modalPlayBtn" onclick="playJuzFromModal()" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-semibold flex items-center gap-2 transition-all shadow-md">
+                        <i class="fa-solid fa-play"></i> Putar Audio Juz
+                    </button>
+                    <button onclick="closeReaderModal()" class="w-8 h-8 rounded-full bg-slate-800 dark:bg-slate-800 light:bg-slate-200 text-slate-400 hover:text-white flex items-center justify-center">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
             </div>
 
-            <div class="flex items-center justify-between gap-2 sm:gap-4">
+            <!-- List Ayah Reader -->
+            <div id="modalAyahList" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+                <!-- Ayah items generated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Fixed Bottom Audio Player Bar -->
+    <div id="audioPlayerBar" class="fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 dark:bg-slate-950/95 light:bg-white/95 backdrop-blur-xl border-t border-emerald-800/50 shadow-2xl transform translate-y-full transition-transform duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+            
+            <!-- Progress Seekbar & Timer -->
+            <div class="flex items-center gap-3 mb-2">
+                <span id="currentTime" class="text-[11px] text-slate-400 font-mono min-w-[38px] text-right">00:00</span>
+                <input type="range" id="progressBar" value="0" min="0" max="100" oninput="seekAudio(this.value)"
+                    class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500 focus:outline-none">
+                <span id="durationTime" class="text-[11px] text-slate-400 font-mono min-w-[38px]">00:00</span>
+            </div>
+
+            <div class="flex items-center justify-between gap-2">
                 
-                <!-- Left: Juz & Current Surah Info -->
-                <div class="flex items-center gap-3 min-w-0 w-1/3">
+                <!-- Player Info Display -->
+                <div class="flex items-center gap-3 w-1/3 min-w-0">
                     <div id="playerJuzBadge" class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 to-teal-700 flex flex-col items-center justify-center font-bold text-white shrink-0 shadow-md">
-                        <span class="text-[9px] uppercase tracking-wider opacity-80 leading-none">JUZ</span>
-                        <span id="playerJuzNum" class="text-sm leading-none mt-0.5">1</span>
+                        <span class="text-[8px] uppercase opacity-80 leading-none">JUZ</span>
+                        <span id="playerJuzNum" class="text-xs font-extrabold leading-none mt-0.5">1</span>
                     </div>
                     <div class="min-w-0">
-                        <h4 id="playerSurahTitle" class="text-sm font-bold text-slate-100 dark:text-slate-100 light:text-slate-800 truncate">Memuat...</h4>
-                        <p id="playerSurahMeta" class="text-xs text-emerald-400 dark:text-emerald-400 light:text-emerald-600 truncate">
-                            Surah <span id="playerSurahIdx">0</span>/0 • <span id="playerQariName">Mishary Rashid</span>
+                        <h4 id="playerSurahTitle" class="text-xs sm:text-sm font-bold text-slate-100 dark:text-slate-100 light:text-slate-800 truncate">Pilih Juz</h4>
+                        <p id="playerAyahMeta" class="text-[11px] text-emerald-400 truncate">
+                            Surah <span id="playerSurahNum">1</span> : Ayat <span id="playerAyahNum">1</span>
                         </p>
                     </div>
                 </div>
 
-                <!-- Center: Player Controls (Prev, Play/Pause, Next) -->
-                <div class="flex items-center justify-center gap-3 sm:gap-5 w-1/3">
-                    <button onclick="playPrevSurah()" class="text-slate-400 hover:text-emerald-400 transition-colors p-2 text-lg active:scale-95" title="Surah Sebelumnya">
+                <!-- Main Player Controls -->
+                <div class="flex items-center justify-center gap-3 sm:gap-4 w-1/3">
+                    <button onclick="playPrevAyahInJuz()" class="text-slate-400 hover:text-emerald-400 p-2 text-base transition-colors" title="Ayat Sebelumnya">
                         <i class="fa-solid fa-backward-step"></i>
                     </button>
                     
-                    <button id="playPauseBtn" onclick="togglePlayPause()" class="w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center shadow-lg shadow-emerald-500/30 transition-all hover:scale-105 active:scale-95">
-                        <i id="playPauseIcon" class="fa-solid fa-play text-lg ml-0.5"></i>
+                    <button id="playPauseBtn" onclick="togglePlayPause()" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 flex items-center justify-center shadow-lg shadow-emerald-500/20 transition-all hover:scale-105 active:scale-95">
+                        <i id="playPauseIcon" class="fa-solid fa-play text-sm sm:text-base ml-0.5"></i>
                     </button>
                     
-                    <button onclick="playNextSurah()" class="text-slate-400 hover:text-emerald-400 transition-colors p-2 text-lg active:scale-95" title="Surah Selanjutnya">
+                    <button onclick="playNextAyahInJuz()" class="text-slate-400 hover:text-emerald-400 p-2 text-base transition-colors" title="Ayat Selanjutnya">
                         <i class="fa-solid fa-forward-step"></i>
                     </button>
                 </div>
 
-                <!-- Right: Volume & Close Player -->
-                <div class="flex items-center justify-end gap-3 w-1/3">
-                    <div class="hidden md:flex items-center gap-2 group">
-                        <button onclick="toggleMute()" class="text-slate-400 hover:text-emerald-400 transition-colors">
-                            <i id="volumeIcon" class="fa-solid fa-volume-high text-sm"></i>
-                        </button>
-                        <input type="range" id="volumeBar" value="100" min="0" max="100" oninput="setVolume(this.value)"
-                            class="w-20 h-1.5 bg-slate-700 dark:bg-slate-800 light:bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                <!-- Right Controls: Player Qari Select, Volume, Close -->
+                <div class="flex items-center justify-end gap-2 sm:gap-3 w-1/3">
+                    
+                    <!-- Player Bar Qari Selector -->
+                    <div class="relative">
+                        <select onchange="changeQari(this.value)" class="qari-selector bg-slate-800 dark:bg-slate-900 light:bg-slate-100 border border-emerald-700/50 text-emerald-300 text-[10px] sm:text-xs rounded-lg px-2 py-1.5 outline-none focus:ring-1 focus:ring-emerald-500 cursor-pointer max-w-[110px] sm:max-w-[150px] truncate">
+                            <option value="01">01. Abdullah Al-Juhany</option>
+                            <option value="02">02. Abdul Muhsin Al-Qasim</option>
+                            <option value="03">03. Abdurrahman As-Sudais</option>
+                            <option value="04">04. Ibrahim Al-Dossari</option>
+                            <option value="05" selected>05. Misyari Rasyid Al-Afasy</option>
+                            <option value="06">06. Yasser Al-Dosari</option>
+                        </select>
                     </div>
 
-                    <button onclick="closePlayer()" class="text-slate-400 hover:text-rose-400 transition-colors p-2" title="Tutup Player">
-                        <i class="fa-solid fa-xmark text-lg"></i>
+                    <!-- Volume Controls -->
+                    <div class="hidden lg:flex items-center gap-2">
+                        <button onclick="toggleMute()" class="text-slate-400 hover:text-emerald-400">
+                            <i id="volumeIcon" class="fa-solid fa-volume-high text-xs"></i>
+                        </button>
+                        <input type="range" id="volumeBar" value="100" min="0" max="100" oninput="setVolume(this.value)"
+                            class="w-16 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                    </div>
+
+                    <!-- Close Player -->
+                    <button onclick="closePlayer()" class="text-slate-400 hover:text-rose-400 p-1.5 transition-colors" title="Tutup Player">
+                        <i class="fa-solid fa-xmark text-base"></i>
                     </button>
                 </div>
 
@@ -218,255 +244,260 @@
         </div>
     </div>
 
-    <!-- Hidden HTML5 Audio Element -->
+    <!-- Hidden HTML Audio Element -->
     <audio id="mainAudio"></audio>
 
-    <!-- JavaScript Application Logic -->
     <script>
-        // Data Pemetaan Manual 30 Juz Al-Qur'an (Surah Start -> End)
-        // Berdasarkan standar pembagian Juz dalam Al-Qur'an
+        // MAPPING PRESISI JUZ 1 - 30 AL-QUR'AN (NOMOR SURAH DAN AYAT AWAL - AKHIR)
         const JUZ_MAPPING = [
-            { id: 1, name: "Juz 1", surahs: [1, 2], desc: "Al-Fatihah (1) - Al-Baqarah (141)" },
-            { id: 2, name: "Juz 2", surahs: [2], desc: "Al-Baqarah (142 - 252)" },
-            { id: 3, name: "Juz 3", surahs: [2, 3], desc: "Al-Baqarah (253) - Ali 'Imran (92)" },
-            { id: 4, name: "Juz 4", surahs: [3, 4], desc: "Ali 'Imran (93) - An-Nisa' (23)" },
-            { id: 5, name: "Juz 5", surahs: [4], desc: "An-Nisa' (24 - 147)" },
-            { id: 6, name: "Juz 6", surahs: [4, 5], desc: "An-Nisa' (148) - Al-Ma'idah (81)" },
-            { id: 7, name: "Juz 7", surahs: [5, 6], desc: "Al-Ma'idah (82) - Al-An'am (110)" },
-            { id: 8, name: "Juz 8", surahs: [6, 7], desc: "Al-An'am (111) - Al-A'raf (87)" },
-            { id: 9, name: "Juz 9", surahs: [7, 8], desc: "Al-A'raf (88) - Al-Anfal (40)" },
-            { id: 10, name: "Juz 10", surahs: [8, 9], desc: "Al-Anfal (41) - At-Tawbah (92)" },
-            { id: 11, name: "Juz 11", surahs: [9, 10, 11], desc: "At-Tawbah (93) - Hud (5)" },
-            { id: 12, name: "Juz 12", surahs: [11, 12], desc: "Hud (6) - Yusuf (52)" },
-            { id: 13, name: "Juz 13", surahs: [12, 13, 14], desc: "Yusuf (53) - Ibrahim (52)" },
-            { id: 14, name: "Juz 14", surahs: [15, 16], desc: "Al-Hijr (1) - An-Nahl (128)" },
-            { id: 15, name: "Juz 15", surahs: [17, 18], desc: "Al-Isra' (1) - Al-Kahf (74)" },
-            { id: 16, name: "Juz 16", surahs: [18, 19, 20], desc: "Al-Kahf (75) - Taha (135)" },
-            { id: 17, name: "Juz 17", surahs: [21, 22], desc: "Al-Anbiya' (1) - Al-Hajj (78)" },
-            { id: 18, name: "Juz 18", surahs: [23, 24, 25], desc: "Al-Mu'minun (1) - Al-Furqan (20)" },
-            { id: 19, name: "Juz 19", surahs: [25, 26, 27], desc: "Al-Furqan (21) - An-Naml (55)" },
-            { id: 20, name: "Juz 20", surahs: [27, 28, 29], desc: "An-Naml (56) - Al-'Ankabut (45)" },
-            { id: 21, name: "Juz 21", surahs: [29, 30, 31, 32, 33], desc: "Al-'Ankabut (46) - Al-Ahzab (30)" },
-            { id: 22, name: "Juz 22", surahs: [33, 34, 35, 36], desc: "Al-Ahzab (31) - Yasin (27)" },
-            { id: 23, name: "Juz 23", surahs: [36, 37, 38, 39], desc: "Yasin (28) - Az-Zumar (31)" },
-            { id: 24, name: "Juz 24", surahs: [39, 40, 41], desc: "Az-Zumar (32) - Fussilat (46)" },
-            { id: 25, name: "Juz 25", surahs: [41, 42, 43, 44, 45], desc: "Fussilat (47) - Al-Jathiyah (37)" },
-            { id: 26, name: "Juz 26", surahs: [46, 47, 48, 49, 50, 51], desc: "Al-Ahqaf (1) - Adh-Dhariyat (30)" },
-            { id: 27, name: "Juz 27", surahs: [51, 52, 53, 54, 55, 56, 57], desc: "Adh-Dhariyat (31) - Al-Hadid (29)" },
-            { id: 28, name: "Juz 28", surahs: [58, 59, 60, 61, 62, 63, 64, 65, 66], desc: "Al-Mujadilah (1) - At-Tahrim (12)" },
-            { id: 29, name: "Juz 29", surahs: [67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77], desc: "Al-Mulk (1) - Al-Mursalat (50)" },
-            { id: 30, name: "Juz 30", surahs: Array.from({length: 37}, (_, i) => 78 + i), desc: "An-Naba' (1) - An-Nas (6)" }
+            { id: 1, startSurah: 1, startAyah: 1, endSurah: 2, endAyah: 141, surahs: [1, 2], rangeText: "Al-Fatihah 1:1 - Al-Baqarah 2:141" },
+            { id: 2, startSurah: 2, startAyah: 142, endSurah: 2, endAyah: 252, surahs: [2], rangeText: "Al-Baqarah 2:142 - Al-Baqarah 2:252" },
+            { id: 3, startSurah: 2, startAyah: 253, endSurah: 3, endAyah: 92, surahs: [2, 3], rangeText: "Al-Baqarah 2:253 - Ali 'Imran 3:92" },
+            { id: 4, startSurah: 3, startAyah: 93, endSurah: 4, endAyah: 23, surahs: [3, 4], rangeText: "Ali 'Imran 3:93 - An-Nisa' 4:23" },
+            { id: 5, startSurah: 4, startAyah: 24, endSurah: 4, endAyah: 147, surahs: [4], rangeText: "An-Nisa' 4:24 - An-Nisa' 4:147" },
+            { id: 6, startSurah: 4, startAyah: 148, endSurah: 5, endAyah: 81, surahs: [4, 5], rangeText: "An-Nisa' 4:148 - Al-Ma'idah 5:81" },
+            { id: 7, startSurah: 5, startAyah: 82, endSurah: 6, endAyah: 110, surahs: [5, 6], rangeText: "Al-Ma'idah 5:82 - Al-An'am 6:110" },
+            { id: 8, startSurah: 6, startAyah: 111, endSurah: 7, endAyah: 87, surahs: [6, 7], rangeText: "Al-An'am 6:111 - Al-A'raf 7:87" },
+            { id: 9, startSurah: 7, startAyah: 88, endSurah: 8, endAyah: 40, surahs: [7, 8], rangeText: "Al-A'raf 7:88 - Al-Anfal 8:40" },
+            { id: 10, startSurah: 8, startAyah: 41, endSurah: 9, endAyah: 92, surahs: [8, 9], rangeText: "Al-Anfal 8:41 - At-Taubah 9:92" },
+            { id: 11, startSurah: 9, startAyah: 93, endSurah: 11, endAyah: 5, surahs: [9, 10, 11], rangeText: "At-Taubah 9:93 - Hud 11:5" },
+            { id: 12, startSurah: 11, startAyah: 6, endSurah: 12, endAyah: 52, surahs: [11, 12], rangeText: "Hud 11:6 - Yusuf 12:52" },
+            { id: 13, startSurah: 12, startAyah: 53, endSurah: 14, endAyah: 52, surahs: [12, 13, 14], rangeText: "Yusuf 12:53 - Ibrahim 14:52" },
+            { id: 14, startSurah: 15, startAyah: 1, endSurah: 16, endAyah: 128, surahs: [15, 16], rangeText: "Al-Hijr 15:1 - An-Nahl 16:128" },
+            { id: 15, startSurah: 17, startAyah: 1, endSurah: 18, endAyah: 74, surahs: [17, 18], rangeText: "Al-Isra' 17:1 - Al-Kahf 18:74" },
+            { id: 16, startSurah: 18, startAyah: 75, endSurah: 20, endAyah: 135, surahs: [18, 19, 20], rangeText: "Al-Kahf 18:75 - Taha 20:135" },
+            { id: 17, startSurah: 21, startAyah: 1, endSurah: 22, endAyah: 78, surahs: [21, 22], rangeText: "Al-Anbiya' 21:1 - Al-Hajj 22:78" },
+            { id: 18, startSurah: 23, startAyah: 1, endSurah: 25, endAyah: 20, surahs: [23, 24, 25], rangeText: "Al-Mu'minun 23:1 - Al-Furqan 25:20" },
+            { id: 19, startSurah: 25, startAyah: 21, endSurah: 27, endAyah: 55, surahs: [25, 26, 27], rangeText: "Al-Furqan 25:21 - An-Naml 27:55" },
+            { id: 20, startSurah: 27, startAyah: 56, endSurah: 29, endAyah: 45, surahs: [27, 28, 29], rangeText: "An-Naml 27:56 - Al-'Ankabut 29:45" },
+            { id: 21, startSurah: 29, startAyah: 46, endSurah: 33, endAyah: 30, surahs: [29, 30, 31, 32, 33], rangeText: "Al-'Ankabut 29:46 - Al-Ahzab 33:30" },
+            { id: 22, startSurah: 33, startAyah: 31, endSurah: 36, endAyah: 27, surahs: [33, 34, 35, 36], rangeText: "Al-Ahzab 33:31 - Yasin 36:27" },
+            { id: 23, startSurah: 36, startAyah: 28, endSurah: 39, endAyah: 31, surahs: [36, 37, 38, 39], rangeText: "Yasin 36:28 - Az-Zumar 39:31" },
+            { id: 24, startSurah: 39, startAyah: 32, endSurah: 41, endAyah: 46, surahs: [39, 40, 41], rangeText: "Az-Zumar 39:32 - Fussilat 41:46" },
+            { id: 25, startSurah: 41, startAyah: 47, endSurah: 45, endAyah: 37, surahs: [41, 42, 43, 44, 45], rangeText: "Fussilat 41:47 - Al-Jathiyah 45:37" },
+            { id: 26, startSurah: 46, startAyah: 1, endSurah: 50, endAyah: 45, surahs: [46, 47, 48, 49, 50], rangeText: "Al-Ahqaf 46:1 - Qaf 50:45" },
+            { id: 27, startSurah: 51, startAyah: 1, endSurah: 57, endAyah: 29, surahs: [51, 52, 53, 54, 55, 56, 57], rangeText: "Adh-Dhariyat 51:1 - Al-Hadid 57:29" },
+            { id: 28, startSurah: 58, startAyah: 1, endSurah: 66, endAyah: 12, surahs: [58, 59, 60, 61, 62, 63, 64, 65, 66], rangeText: "Al-Mujadila 58:1 - At-Tahrim 66:12" },
+            { id: 29, startSurah: 67, startAyah: 1, endSurah: 77, endAyah: 50, surahs: [67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77], rangeText: "Al-Mulk 67:1 - Al-Mursalat 77:50" },
+            { id: 30, startSurah: 78, startAyah: 1, endSurah: 114, endAyah: 6, surahs: Array.from({length: 37}, (_, i) => 78 + i), rangeText: "An-Naba' 78:1 - An-Nas 114:6" }
         ];
 
-        const QARI_NAMES = {
-            "01": "Mishary Rashid Al-Afasy",
-            "02": "Abdullah Al-Juhany",
-            "03": "Abdurrahman As-Sudais",
-            "04": "Ibrahim Al-Dossari",
-            "05": "Masyari Al-Qahtani"
-        };
-
-        // State Aplikasi
-        let allSurahs = [];
-        let currentQariKey = "01";
+        // Global State Variables
+        let allSurahsData = [];
+        let selectedQariKey = "05"; // Default: Misyari Rasyid Al-Afasy
         let activeJuz = null;
-        let activeSurahIndex = 0; // Index relatif surah dalam Juz aktif
+        let activeJuzPlaylist = []; // Playlist audio per-ayat dalam Juz aktif
+        let activeAyahIndex = 0;
         let isPlaying = false;
 
-        // Elements
+        // DOM Elements
         const audio = document.getElementById('mainAudio');
-        const juzContainer = document.getElementById('juzContainer');
+        const juzGrid = document.getElementById('juzGrid');
         const loadingState = document.getElementById('loadingState');
         const audioPlayerBar = document.getElementById('audioPlayerBar');
-        const playPauseBtn = document.getElementById('playPauseBtn');
         const playPauseIcon = document.getElementById('playPauseIcon');
         const progressBar = document.getElementById('progressBar');
         const currentTimeEl = document.getElementById('currentTime');
         const durationTimeEl = document.getElementById('durationTime');
 
-        // Initializer
         window.onload = async () => {
             await fetchSurahList();
-            setupAudioEventListeners();
+            setupAudioEvents();
         };
 
-        // Fetch All Surahs dari EQuran.id API v2
+        // Ambil Daftar Surah dari EQuran API v2
         async function fetchSurahList() {
             try {
                 const response = await fetch('https://equran.id/api/v2/surat');
                 const result = await response.json();
                 if (result.code === 200) {
-                    allSurahs = result.data;
-                    renderJuzCards();
+                    allSurahsData = result.data;
+                    renderJuzGrid();
                 } else {
-                    throw new Error("Gagal memuat data API");
+                    throw new Error("Gagal mengambil data surah.");
                 }
-            } catch (error) {
-                console.error("Error fetching surahs:", error);
+            } catch (err) {
+                console.error(err);
                 loadingState.innerHTML = `
                     <div class="text-rose-500 font-medium text-center">
                         <i class="fa-solid fa-triangle-exclamation text-3xl mb-2"></i><br>
-                        Gagal memuat data dari API equran.id.<br>Pastikan koneksi internet terhubung.
+                        Gagal memuat data dari API EQuran. Silakan periksa koneksi internet Anda.
                     </div>
                 `;
             }
         }
 
-        // Render List Juz 1-30 ke UI
-        function renderJuzCards() {
+        // Render Grid Card Juz 1-30
+        function renderJuzGrid() {
             loadingState.classList.add('hidden');
-            juzContainer.classList.remove('hidden');
-            juzContainer.innerHTML = '';
+            juzGrid.classList.remove('hidden');
+            juzGrid.innerHTML = '';
 
-            JUZ_MAPPING.forEach((juz) => {
-                // Cari nama surah yang terkandung di dalam Juz
+            JUZ_MAPPING.forEach(juz => {
                 const surahNames = juz.surahs.map(num => {
-                    const s = allSurahs.find(item => item.nomor === num);
+                    const s = allSurahsData.find(item => item.nomor === num);
                     return s ? s.namaLatin : `Surah ${num}`;
                 }).join(', ');
 
                 const card = document.createElement('div');
                 card.id = `juz-card-${juz.id}`;
-                card.className = "juz-card bg-slate-800/60 dark:bg-slate-800/60 light:bg-white border border-slate-700/60 dark:border-slate-700/60 light:border-slate-200 rounded-2xl p-5 hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-300 flex flex-col justify-between group cursor-pointer relative overflow-hidden";
+                card.className = "juz-card bg-slate-900/60 dark:bg-slate-900/60 light:bg-white border border-slate-800 dark:border-slate-800 light:border-slate-200 rounded-2xl p-5 hover:border-emerald-500/60 hover:shadow-xl hover:shadow-emerald-500/10 transition-all flex flex-col justify-between group cursor-pointer";
                 
-                card.onclick = () => selectAndPlayJuz(juz.id);
-
                 card.innerHTML = `
-                    <div class="flex items-start justify-between gap-3 mb-3">
-                        <div class="flex items-center gap-3">
-                            <div class="w-12 h-12 rounded-xl bg-slate-700/60 dark:bg-slate-700/60 light:bg-slate-100 border border-slate-600/50 dark:border-slate-600/50 light:border-slate-300 flex items-center justify-center font-extrabold text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
-                                ${juz.id}
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-slate-800 dark:bg-slate-800 light:bg-slate-100 border border-slate-700/60 dark:border-slate-700/60 light:border-slate-300 flex items-center justify-center font-bold text-emerald-400 group-hover:bg-emerald-500 group-hover:text-slate-950 transition-colors">
+                                    ${juz.id}
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-100 dark:text-slate-100 light:text-slate-800 group-hover:text-emerald-400 transition-colors">Juz ${juz.id}</h3>
+                                    <p class="text-xs text-slate-400">${juz.surahs.length} Surah Terkait</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="font-bold text-lg text-slate-100 dark:text-slate-100 light:text-slate-800 group-hover:text-emerald-400 transition-colors">Juz ${juz.id}</h3>
-                                <p class="text-xs text-slate-400 font-medium">${juz.surahs.length} Surah</p>
+                            <div class="flex items-center gap-2">
+                                <button onclick="event.stopPropagation(); openReaderModal(${juz.id})" class="p-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-emerald-400 transition-colors" title="Baca Teks Ayat">
+                                    <i class="fa-solid fa-book-open text-xs"></i>
+                                </button>
+                                <button onclick="event.stopPropagation(); prepareAndPlayJuzAudio(${juz.id})" class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500 hover:text-slate-950 flex items-center justify-center transition-all shadow-md" title="Putar Audio Juz">
+                                    <i class="fa-solid fa-play text-xs ml-0.5"></i>
+                                </button>
                             </div>
                         </div>
 
-                        <!-- Mini Play Button -->
-                        <div class="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-slate-950 transition-all shadow-md">
-                            <i class="fa-solid fa-play text-sm ml-0.5 card-play-icon"></i>
-                        </div>
-                    </div>
-
-                    <div class="space-y-1.5 mt-2">
-                        <div class="text-xs font-semibold text-emerald-400/90 dark:text-emerald-400/90 light:text-emerald-700 truncate">
-                            ${surahNames}
-                        </div>
-                        <div class="text-[11px] text-slate-400 dark:text-slate-400 light:text-slate-500 truncate">
-                            <i class="fa-solid fa-book-open text-[10px] mr-1"></i> ${juz.desc}
+                        <div class="space-y-2 mt-3">
+                            <div class="text-xs font-semibold text-emerald-400/90 truncate">
+                                ${surahNames}
+                            </div>
+                            <div class="text-xs text-slate-400 bg-slate-950/40 dark:bg-slate-950/40 light:bg-slate-100 p-2 rounded-lg border border-slate-800/40 dark:border-slate-800/40 light:border-slate-200">
+                                <i class="fa-solid fa-bookmark text-[10px] text-emerald-500 mr-1.5"></i> <strong>Rentang:</strong> ${juz.rangeText}
+                            </div>
                         </div>
                     </div>
                 `;
-                juzContainer.appendChild(card);
+
+                card.onclick = () => openReaderModal(juz.id);
+                juzGrid.appendChild(card);
             });
         }
 
-        // Pilih Juz & Mulai Putar Surah Pertama dalam Juz
-        function selectAndPlayJuz(juzId, surahIndex = 0) {
+        // Siapkan Playlist Audio Per-Ayat untuk Juz Terpilih
+        async function prepareAndPlayJuzAudio(juzId, targetAyahIndex = 0) {
             const juz = JUZ_MAPPING.find(j => j.id === juzId);
             if (!juz) return;
 
             activeJuz = juz;
-            activeSurahIndex = surahIndex;
+            activeJuzPlaylist = [];
 
-            // Highlight Active Card
-            document.querySelectorAll('.juz-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-500', 'bg-emerald-950/20'));
-            const activeCard = document.getElementById(`juz-card-${juzId}`);
-            if (activeCard) {
-                activeCard.classList.add('ring-2', 'ring-emerald-500', 'bg-emerald-950/20');
+            // UI Highlight Card
+            document.querySelectorAll('.juz-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-500'));
+            const card = document.getElementById(`juz-card-${juzId}`);
+            if (card) card.classList.add('ring-2', 'ring-emerald-500');
+
+            // Tampilkan Bar Audio Player
+            audioPlayerBar.classList.remove('translate-y-full');
+            document.getElementById('playerJuzNum').innerText = juz.id;
+            document.getElementById('playerSurahTitle').innerText = `Juz ${juz.id} (Memuat Audio...)`;
+
+            // Fetch Detail Ayat tiap Surah dalam Juz ini
+            for (const surahNum of juz.surahs) {
+                try {
+                    const res = await fetch(`https://equran.id/api/v2/surat/${surahNum}`);
+                    const data = await res.json();
+                    if (data.code === 200) {
+                        const surahDetail = data.data;
+                        let ayahs = surahDetail.ayat;
+
+                        // Filter ayat sesuai rentang Juz awal dan akhir
+                        if (surahNum === juz.startSurah) {
+                            ayahs = ayahs.filter(a => a.nomorAyat >= juz.startAyah);
+                        }
+                        if (surahNum === juz.endSurah) {
+                            ayahs = ayahs.filter(a => a.nomorAyat <= juz.endAyah);
+                        }
+
+                        // Susun ke playlist audio per-ayat
+                        ayahs.forEach(a => {
+                            activeJuzPlaylist.push({
+                                surahNomor: surahDetail.nomor,
+                                surahNama: surahDetail.namaLatin,
+                                nomorAyat: a.nomorAyat,
+                                audioMap: a.audio // Map kunci qari 01-06
+                            });
+                        });
+                    }
+                } catch (e) {
+                    console.error(`Gagal memuat surah ${surahNum}`, e);
+                }
             }
 
-            // Show Bottom Player Bar
-            audioPlayerBar.classList.remove('translate-y-full');
-
-            // Load and Play Current Surah Audio
-            loadSurahAudio();
+            if (activeJuzPlaylist.length > 0) {
+                activeAyahIndex = targetAyahIndex;
+                loadAndPlayCurrentAyah();
+            }
         }
 
-        // Load Audio Surah berdasarkan Qari & Surah Aktif dalam Juz
-        function loadSurahAudio() {
-            if (!activeJuz) return;
+        // Memutar Ayat Aktif
+        function loadAndPlayCurrentAyah() {
+            if (!activeJuzPlaylist || activeJuzPlaylist.length === 0) return;
 
-            const currentSurahNum = activeJuz.surahs[activeSurahIndex];
-            const surahData = allSurahs.find(s => s.nomor === currentSurahNum);
-
-            if (!surahData) return;
-
-            // Dapatkan URL MP3 dari API EQuran v2 berdasarkan pilihan Qari
-            const audioUrl = surahData.audioFull[currentQariKey];
+            const currentTrack = activeJuzPlaylist[activeAyahIndex];
+            const audioUrl = currentTrack.audioMap[selectedQariKey];
 
             audio.src = audioUrl;
             audio.load();
 
-            // Update UI Player Bar
-            document.getElementById('playerJuzNum').innerText = activeJuz.id;
-            document.getElementById('playerSurahTitle').innerText = `${surahData.namaLatin} (${surahData.nama})`;
-            document.getElementById('playerSurahIdx').innerText = activeSurahIndex + 1;
-            document.getElementById('playerSurahMeta').innerHTML = `
-                Surah ${activeSurahIndex + 1}/${activeJuz.surahs.length} • <span class="text-slate-300 dark:text-slate-300 light:text-slate-600">${QARI_NAMES[currentQariKey]}</span>
-            `;
-            document.getElementById('playerQariName').innerText = QARI_NAMES[currentQariKey];
+            document.getElementById('playerSurahTitle').innerText = `${currentTrack.surahNama}`;
+            document.getElementById('playerSurahNum').innerText = `${currentTrack.surahNomor}`;
+            document.getElementById('playerAyahNum').innerText = `${currentTrack.nomorAyat} (${activeAyahIndex + 1}/${activeJuzPlaylist.length})`;
+
+            // Soroti ayat di modal jika terbuka
+            highlightCurrentModalAyah(currentTrack.surahNomor, currentTrack.nomorAyat);
 
             playAudio();
         }
 
-        // Play Audio Controls
         function playAudio() {
             audio.play().then(() => {
                 isPlaying = true;
-                playPauseIcon.className = 'fa-solid fa-pause text-lg';
-            }).catch(err => {
-                console.error("Gagal memutar audio:", err);
-            });
+                playPauseIcon.className = 'fa-solid fa-pause text-sm sm:text-base';
+            }).catch(e => console.error(e));
         }
 
         function pauseAudio() {
             audio.pause();
             isPlaying = false;
-            playPauseIcon.className = 'fa-solid fa-play text-lg ml-0.5';
+            playPauseIcon.className = 'fa-solid fa-play text-sm sm:text-base ml-0.5';
         }
 
         function togglePlayPause() {
             if (!audio.src) return;
-            if (isPlaying) {
+            if (isPlaying) pauseAudio();
+            else playAudio();
+        }
+
+        function playNextAyahInJuz() {
+            if (!activeJuzPlaylist || activeJuzPlaylist.length === 0) return;
+            if (activeAyahIndex < activeJuzPlaylist.length - 1) {
+                activeAyahIndex++;
+                loadAndPlayCurrentAyah();
+            } else if (activeJuz && activeJuz.id < 30) {
+                // Pindah otomatis ke Juz selanjutnya saat Juz selesai
+                prepareAndPlayJuzAudio(activeJuz.id + 1, 0);
+            } else {
                 pauseAudio();
-            } else {
-                playAudio();
             }
         }
 
-        // Next & Previous Surah dalam Juz (Seamless Playlist Logic)
-        function playNextSurah() {
-            if (!activeJuz) return;
-            if (activeSurahIndex < activeJuz.surahs.length - 1) {
-                activeSurahIndex++;
-                loadSurahAudio();
-            } else {
-                // Jika sudah surah terakhir di Juz tersebut, pindah ke Juz berikutnya
-                if (activeJuz.id < 30) {
-                    selectAndPlayJuz(activeJuz.id + 1, 0);
-                } else {
-                    pauseAudio(); // Selesai Juz 30
-                }
+        function playPrevAyahInJuz() {
+            if (!activeJuzPlaylist || activeJuzPlaylist.length === 0) return;
+            if (activeAyahIndex > 0) {
+                activeAyahIndex--;
+                loadAndPlayCurrentAyah();
             }
         }
 
-        function playPrevSurah() {
-            if (!activeJuz) return;
-            if (activeSurahIndex > 0) {
-                activeSurahIndex--;
-                loadSurahAudio();
-            } else if (activeJuz.id > 1) {
-                // Pindah ke Juz sebelumnya (surah terakhir)
-                const prevJuz = JUZ_MAPPING.find(j => j.id === activeJuz.id - 1);
-                selectAndPlayJuz(prevJuz.id, prevJuz.surahs.length - 1);
-            }
-        }
-
-        // Event Listeners Audio Element
-        function setupAudioEventListeners() {
-            // Update Seekbar & Timer
+        function setupAudioEvents() {
             audio.ontimeupdate = () => {
                 if (audio.duration) {
                     const progress = (audio.currentTime / audio.duration) * 100;
@@ -476,62 +507,167 @@
                 }
             };
 
-            // Seamless Auto Play Surah Berikutnya Saat Audio Selesai
-            audio.onended = () => {
-                playNextSurah();
-            };
+            // Lanjut ke ayat berikutnya saat audio usai
+            audio.onended = () => playNextAyahInJuz();
         }
 
-        // Seek Audio Function
         function seekAudio(val) {
             if (audio.duration) {
                 audio.currentTime = (val / 100) * audio.duration;
             }
         }
 
-        // Volume Control
         function setVolume(val) {
             audio.volume = val / 100;
-            const icon = document.getElementById('volumeIcon');
-            if (val == 0) icon.className = 'fa-solid fa-volume-xmark text-sm text-rose-400';
-            else if (val < 50) icon.className = 'fa-solid fa-volume-low text-sm';
-            else icon.className = 'fa-solid fa-volume-high text-sm';
         }
 
         function toggleMute() {
-            if (audio.volume > 0) {
-                audio.volume = 0;
-                document.getElementById('volumeBar').value = 0;
-                document.getElementById('volumeIcon').className = 'fa-solid fa-volume-xmark text-sm text-rose-400';
-            } else {
-                audio.volume = 1;
-                document.getElementById('volumeBar').value = 100;
-                document.getElementById('volumeIcon').className = 'fa-solid fa-volume-high text-sm';
+            audio.muted = !audio.muted;
+            document.getElementById('volumeIcon').className = audio.muted ? 'fa-solid fa-volume-xmark text-rose-400' : 'fa-solid fa-volume-high';
+        }
+
+        // Mengubah Pilihan Qari secara Dinamis
+        function changeQari(val) {
+            selectedQariKey = val;
+            
+            // Sinkronkan seluruh selector dropdown Qari yang ada di halaman
+            document.querySelectorAll('.qari-selector').forEach(sel => {
+                sel.value = val;
+            });
+
+            // Jika sedang ada audio yang berjalan/dimuat, langsung perbarui URL audio tanpa reset posisi ayat
+            if (activeJuzPlaylist.length > 0) {
+                const isCurrentPlaying = isPlaying;
+                const savedTime = audio.currentTime;
+                
+                const currentTrack = activeJuzPlaylist[activeAyahIndex];
+                audio.src = currentTrack.audioMap[selectedQariKey];
+                audio.currentTime = savedTime;
+
+                if (isCurrentPlaying) playAudio();
             }
         }
 
-        // Ganti Qari / Murottal
-        function changeQari(qariKey) {
-            currentQariKey = qariKey;
-            document.getElementById('qariSelect').value = qariKey;
-            document.getElementById('qariSelectMobile').value = qariKey;
-
-            if (activeJuz) {
-                const currentPos = audio.currentTime;
-                loadSurahAudio();
-            }
-        }
-
-        // Tutup Player Bar
         function closePlayer() {
             pauseAudio();
             audioPlayerBar.classList.add('translate-y-full');
-            document.querySelectorAll('.juz-card').forEach(c => c.classList.remove('ring-2', 'ring-emerald-500', 'bg-emerald-950/20'));
             activeJuz = null;
+            activeJuzPlaylist = [];
         }
 
-        // Filter / Search Juz
-        function filterJuz() {
+        // Buka Reader Modal Teks Ayat Lengkap
+        async function openReaderModal(juzId) {
+            const juz = JUZ_MAPPING.find(j => j.id === juzId);
+            if (!juz) return;
+
+            activeJuz = juz;
+            document.getElementById('modalJuzTitle').innerText = `Juz ${juz.id}`;
+            document.getElementById('modalJuzRange').innerText = `Rentang: ${juz.rangeText}`;
+            document.getElementById('readerModal').classList.remove('hidden');
+
+            const container = document.getElementById('modalAyahList');
+            container.innerHTML = `
+                <div class="flex items-center justify-center py-12 gap-3">
+                    <div class="w-8 h-8 border-3 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+                    <span class="text-xs text-slate-400">Memuat Teks Ayat Lengkap Juz ${juz.id}...</span>
+                </div>
+            `;
+
+            let htmlContent = '';
+
+            for (const surahNum of juz.surahs) {
+                try {
+                    const res = await fetch(`https://equran.id/api/v2/surat/${surahNum}`);
+                    const data = await res.json();
+
+                    if (data.code === 200) {
+                        const surah = data.data;
+                        let ayahs = surah.ayat;
+
+                        if (surahNum === juz.startSurah) {
+                            ayahs = ayahs.filter(a => a.nomorAyat >= juz.startAyah);
+                        }
+                        if (surahNum === juz.endSurah) {
+                            ayahs = ayahs.filter(a => a.nomorAyat <= juz.endAyah);
+                        }
+
+                        htmlContent += `
+                            <div class="bg-emerald-950/40 border border-emerald-800/40 rounded-xl p-3 my-4 text-center">
+                                <h4 class="font-bold text-emerald-400 text-sm">Surah ${surah.namaLatin} (${surah.nama})</h4>
+                                <p class="text-[11px] text-slate-400">${surah.arti} • ${surah.jumlahAyat} Ayat</p>
+                            </div>
+                        `;
+
+                        ayahs.forEach(a => {
+                            htmlContent += `
+                                <div id="ayah-box-${surah.nomor}-${a.nomorAyat}" class="p-4 bg-slate-950/60 dark:bg-slate-950/60 light:bg-slate-50 border border-slate-800 dark:border-slate-800 light:border-slate-200 rounded-2xl space-y-3 transition-all">
+                                    <div class="flex items-center justify-between">
+                                        <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20">
+                                            Ayat ${a.nomorAyat}
+                                        </span>
+                                        <button onclick="playSpecificAyah(${juz.id}, ${surah.nomor}, ${a.nomorAyat})" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 flex items-center justify-center transition-colors" title="Putar Ayat Ini">
+                                            <i class="fa-solid fa-play text-xs ml-0.5"></i>
+                                        </button>
+                                    </div>
+                                    <div class="text-right font-arabic text-2xl leading-loose text-emerald-200 dark:text-emerald-200 light:text-slate-900">
+                                        ${a.teksArab}
+                                    </div>
+                                    <div class="text-xs text-emerald-400 font-medium italic">
+                                        ${a.teksLatin}
+                                    </div>
+                                    <div class="text-xs text-slate-300 dark:text-slate-300 light:text-slate-700 leading-relaxed">
+                                        ${a.teksIndonesia}
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            container.innerHTML = htmlContent;
+
+            if (activeJuzPlaylist.length > 0) {
+                const cur = activeJuzPlaylist[activeAyahIndex];
+                highlightCurrentModalAyah(cur.surahNomor, cur.nomorAyat);
+            }
+        }
+
+        function playJuzFromModal() {
+            if (activeJuz) {
+                prepareAndPlayJuzAudio(activeJuz.id, 0);
+            }
+        }
+
+        function playSpecificAyah(juzId, surahNum, ayahNum) {
+            prepareAndPlayJuzAudio(juzId, 0).then(() => {
+                const idx = activeJuzPlaylist.findIndex(p => p.surahNomor === surahNum && p.nomorAyat === ayahNum);
+                if (idx !== -1) {
+                    activeAyahIndex = idx;
+                    loadAndPlayCurrentAyah();
+                }
+            });
+        }
+
+        function highlightCurrentModalAyah(surahNum, ayahNum) {
+            document.querySelectorAll('[id^="ayah-box-"]').forEach(el => {
+                el.classList.remove('ring-2', 'ring-emerald-500', 'bg-emerald-950/20');
+            });
+            const target = document.getElementById(`ayah-box-${surahNum}-${ayahNum}`);
+            if (target) {
+                target.classList.add('ring-2', 'ring-emerald-500', 'bg-emerald-950/20');
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        function closeReaderModal() {
+            document.getElementById('readerModal').classList.add('hidden');
+        }
+
+        // Fitur Filter / Cari Juz
+        function filterJuzCards() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             let visibleCount = 0;
 
@@ -540,7 +676,7 @@
                 if (!card) return;
 
                 const surahNames = juz.surahs.map(num => {
-                    const s = allSurahs.find(item => item.nomor === num);
+                    const s = allSurahsData.find(item => item.nomor === num);
                     return s ? s.namaLatin.toLowerCase() : '';
                 }).join(' ');
 
@@ -555,35 +691,27 @@
                 }
             });
 
-            const noResults = document.getElementById('noResults');
-            if (visibleCount === 0) {
-                noResults.classList.remove('hidden');
-            } else {
-                noResults.classList.add('hidden');
-            }
+            document.getElementById('noResults').classList.toggle('hidden', visibleCount > 0);
         }
 
-        // Format Detik ke MM:SS
-        function formatTime(seconds) {
-            if (isNaN(seconds)) return "00:00";
-            const m = Math.floor(seconds / 60);
-            const s = Math.floor(seconds % 60);
+        function formatTime(sec) {
+            if (isNaN(sec)) return "00:00";
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
             return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
         }
 
-        // Dark / Light Theme Toggle
         function toggleTheme() {
             const html = document.documentElement;
-            const themeIcon = document.getElementById('themeIcon');
-
+            const icon = document.getElementById('themeIcon');
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
                 html.classList.add('light');
-                themeIcon.className = 'fa-solid fa-sun text-lg text-amber-500';
+                icon.className = 'fa-solid fa-sun text-amber-500';
             } else {
                 html.classList.remove('light');
                 html.classList.add('dark');
-                themeIcon.className = 'fa-solid fa-moon text-lg text-gold-400';
+                icon.className = 'fa-solid fa-moon text-gold-400';
             }
         }
     </script>
